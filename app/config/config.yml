@@ -1,1 +1,4 @@
 debug: true
+
+config:
+    title: Website Title

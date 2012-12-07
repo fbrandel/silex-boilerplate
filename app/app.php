@@ -1,27 +1,23 @@
 <?php
 require __DIR__.'/bootstrap.php';
 
-use Symfony\Component\Yaml\Yaml;
-
 $app = new Silex\Application();
 
-// Configuration
-$app['autoloader']->registerNamespace("Symfony\Component\Yaml", __DIR__."/../vendor");
-$app['config'] = Yaml::parse(__DIR__."/config/config.yml");
-
-$app['debug'] = $app['config']['debug'];
-
-// Extensions
+// Twig Extension
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
-    'twig.path'       => __DIR__.'/views',
-    'twig.class_path' => __DIR__.'/../vendor/Twig/lib',
+    'twig.path' => __DIR__.'/templates',
 ));
+
+// Config Extension
+$app->register(new Igorw\Silex\ConfigServiceProvider(__DIR__."/config/config.yml"));
+
 
 // Routes
 $app->get('/', function () use ($app) {
-     return $app['twig']->render('index.twig', array(
+    return $app['twig']->render('index.twig', array(
                'title' => "Hello World",
-               ));
+               'colors' => array("red", "green", "yellow"),
+            ));
 });
 
 return $app;
