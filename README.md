@@ -8,5 +8,5 @@ Simple Boilerplate for [Silex](http://silex.sensiolabs.org/) PHP Framework inclu
 1. Clone or download the boilerplate code
 1. Install Dependencies via Composer:
 
-    $ curl -s http://getcomposer.org/installer | php
-    $ php composer.phar install
+        $ curl -s http://getcomposer.org/installer | php
+        $ php composer.phar install
